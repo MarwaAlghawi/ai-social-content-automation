@@ -1,0 +1,53 @@
+{
+  "name": "Aurelle – Error Alerts",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e90f80a4-7517-4f58-99f5-f60a402cd299",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=⚠️ Workflow failed\n\nWorkflow: {{ $json.workflow.name }}\nFailed at: {{ $json.execution.lastNodeExecuted }}\nError: {{ $json.execution.error.message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "81e10dd9-de24-45cc-a62b-e3279d4482ba",
+      "name": "Send Alert",
+      "webhookId": "e108a025-bfb1-4ecf-acc0-5d08be32f60d",
+      "credentials": {
+        "telegramApi": {
+          "id": "pNOXwENZeEedgePK",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          { "node": "Send Alert", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}
